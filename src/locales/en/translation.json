@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "about": "About",
+    "resources": "Resources"
+  },
+  "home": {
+    "hero": {
+      "title": "A Taste of Canada",
+      "subtitle": "Discover authentic recipes and culinary traditions shared with a bilingual heart",
+      "cta": "Explore Recipes"
+    },
+    "about": {
+      "title": "Welcome to my Canadian kitchen",
+      "text": "The goal of Carolina de Canadá is to be a resource for those who have enjoyed my baking and recipes, heard of their fame, or for those who have discovered them by chance. These are Canadian recipes, with the exception of a few adaptations that make them incredible.",
+      "link": "More About Me"
+    },
+    "featured": {
+      "title": "Featured Recipes",
+      "viewAll": "View All Recipes",
+      "brownies": {
+        "title": "Brooke's Explosive Brownies",
+        "desc": "Ultra rich, fudgy, and intensely chocolatey in every single bite."
+      },
+      "arroz": {
+        "title": "Creamy Arroz con Leche",
+        "desc": "A comforting traditional dessert with a hint of cinnamon and vanilla."
+      },
+      "bread": {
+        "title": "Canadian Artisanal Bread",
+        "desc": "Warm, soul-satisfying bread made with simple, wholesome ingredients."
+      }
+    },
+    "categories": {
+      "title": "Recipe Categories",
+      "explore": "Explore",
+      "breads_desc": "Warm, soul-satisfying bread made with simple, wholesome ingredients.",
+      "cakes_desc": "Delicious cakes made for sharing and celebrating with loved ones.",
+      "cookies_desc": "Simple, satisfying cookies that are always a joy to bake and eat.",
+      "desserts_desc": "Rich, indulgent desserts that make every moment special."
+    },
+    "newsletter": {
+      "title": "Stay Connected",
+      "subtitle": "Get the latest recipes delivered to your inbox",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "subscribing": "Subscribing...",
+      "success": "Subscription successful!",
+      "error": "Error subscribing. Please try again.",
+      "invalidEmail": "Please enter a valid email address"
+    }
+  },
+  "recipe": {
+    "prepTime": "Prep Time",
+    "cookTime": "Cook Time",
+    "totalTime": "Total Time",
+    "servings": "Servings",
+    "difficulty": "Difficulty",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "notes": "Notes",
+    "minutes": "min",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "print": "Print",
+    "share": "Share"
+  },
+  "search": {
+    "placeholder": "Search recipes...",
+    "filters": "Filters",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "difficulty": "Difficulty",
+    "allDifficulties": "All Difficulties",
+    "maxTime": "Max Time",
+    "clearFilters": "Clear Filters",
+    "resultsFound": "recipes found",
+    "noResults": "No recipes found"
+  },
+  "footer": {
+    "tagline": "Canadian recipes made with love",
+    "rights": "All rights reserved"
+  },
+  "about": {
+    "title": "About Carolina de Canadá",
+    "welcome": "Welcome to my Canadian kitchen",
+    "intro": "The goal of Carolina de Canadá is to be a resource for those who have enjoyed my baking and recipes, heard of their fame, or for those who have discovered them by chance.",
+    "mission_title": "My Mission",
+    "mission_text": "I am dedicated to sharing the best of Canadian culinary traditions with a bilingual audience, bridging cultural communities through the universal language of food.",
+    "unique_title": "Authenticity with a Twist",
+    "unique_text": "The recipes you find here are authentically Canadian, with some special adaptations that make them incredible. Every recipe is shared in both English and Spanish with love.",
+    "quote": "Enjoy your next delicious moment!"
+  }
+}

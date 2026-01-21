@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "recipes": "Recetas",
+    "about": "Acerca de",
+    "resources": "Recursos"
+  },
+  "home": {
+    "hero": {
+      "title": "Sabor de Canadá",
+      "subtitle": "Descubre recetas auténticas y tradiciones culinarias compartidas con un corazón bilingüe",
+      "cta": "Explorar Recetas"
+    },
+    "about": {
+      "title": "Bienvenidos a mi cocina canadiense",
+      "text": "El objetivo de Carolina de Canadá es ser un recurso para quienes han disfrutado de mis reposterías y recetas, han oído hablar de su fama o para quienes las han descubierto por casualidad. Son recetas canadienses, con la excepción de algunas adaptaciones que las hacen increíbles.",
+      "link": "Más Sobre Mí"
+    },
+    "featured": {
+      "title": "Recetas Destacadas",
+      "viewAll": "Ver Todas las Recetas",
+      "brownies": {
+        "title": "Brownies Explosivos de Brooke",
+        "desc": "Ultra ricos, melosos e intensamente chocolatosos en cada bocado."
+      },
+      "arroz": {
+        "title": "Arroz con Leche Cremoso",
+        "desc": "Un reconfortante postre tradicional con un toque de canela y vainilla."
+      },
+      "bread": {
+        "title": "Pan Artesanal Canadiense",
+        "desc": "Pan caliente y reconfortante hecho con ingredientes sencillos y saludables."
+      }
+    },
+    "categories": {
+      "title": "Categorías de Recetas",
+      "explore": "Explorar",
+      "breads_desc": "Panes calientes y reconfortantes hechos con ingredientes sencillos y saludables.",
+      "cakes_desc": "Pasteles deliciosos hechos para compartir y celebrar con los seres queridos.",
+      "cookies_desc": "Galletas sencillas y satisfactorias que siempre es un placer hornear y comer.",
+      "desserts_desc": "Postres ricos y tentadores que hacen que cada momento sea especial."
+    },
+    "newsletter": {
+      "title": "Mantente Conectado",
+      "subtitle": "Recibe las últimas recetas en tu correo",
+      "placeholder": "Ingresa tu correo",
+      "subscribe": "Suscribirse",
+      "subscribing": "Suscribiendo...",
+      "success": "¡Suscripción exitosa!",
+      "error": "Error en la suscripción. Intenta de nuevo.",
+      "invalidEmail": "Por favor ingresa un correo válido"
+    }
+  },
+  "recipe": {
+    "prepTime": "Tiempo de Preparación",
+    "cookTime": "Tiempo de Cocción",
+    "totalTime": "Tiempo Total",
+    "servings": "Porciones",
+    "difficulty": "Dificultad",
+    "ingredients": "Ingredientes",
+    "instructions": "Instrucciones",
+    "notes": "Notas",
+    "minutes": "min",
+    "easy": "Fácil",
+    "medium": "Intermedio",
+    "hard": "Difícil",
+    "print": "Imprimir",
+    "share": "Compartir"
+  },
+  "search": {
+    "placeholder": "Buscar recetas...",
+    "filters": "Filtros",
+    "category": "Categoría",
+    "allCategories": "Todas las Categorías",
+    "difficulty": "Dificultad",
+    "allDifficulties": "Todas las Dificultades",
+    "maxTime": "Tiempo Máximo",
+    "clearFilters": "Limpiar Filtros",
+    "resultsFound": "recetas encontradas",
+    "noResults": "No se encontraron recetas"
+  },
+  "footer": {
+    "tagline": "Recetas canadienses con amor",
+    "rights": "Todos los derechos reservados"
+  },
+  "about": {
+    "title": "Sobre Carolina de Canadá",
+    "welcome": "Bienvenidos a mi cocina canadiense",
+    "intro": "El objetivo de Carolina de Canadá es ser un recurso para quienes han disfrutado de mis reposterías y recetas, han oído hablar de su fama o para quienes las han descubierto por casualidad.",
+    "mission_title": "Mi Misión",
+    "mission_text": "Me dedico a compartir lo mejor de las tradiciones culinarias canadienses con una audiencia bilingüe, uniendo comunidades culturales a través del lenguaje universal de la comida.",
+    "unique_title": "Autenticidad con un Toque Especial",
+    "unique_text": "Las recetas que encontrarás aquí son auténticamente canadienses, con algunas adaptaciones especiales que las hacen increíbles. Cada receta se comparte en inglés y español con mucho amor.",
+    "quote": "¡Disfruta tu próximo momento delicioso!"
+  }
+}
