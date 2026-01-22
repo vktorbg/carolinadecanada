@@ -2,11 +2,11 @@ import React from 'react';
 import './src/styles/global.css';
 
 export const onRenderBody = ({ setHeadComponents }) => {
-    setHeadComponents([
-        <script
-            key="debug-script"
-            dangerouslySetInnerHTML={{
-                __html: `
+  setHeadComponents([
+    <script
+      key="debug-script"
+      dangerouslySetInnerHTML={{
+        __html: `
           (function() {
             console.log("🔍 [SYSTEM DEBUG] Iniciando monitoreo de errores...");
             
@@ -15,10 +15,17 @@ export const onRenderBody = ({ setHeadComponents }) => {
               console.group("🛑 ERROR DETECTADO");
               console.error("Mensaje:", msg);
               console.error("Archivo:", url);
-              console.error("Línea:", line, "Columna:", col);
               
+              if (msg.includes("Error #130") || msg.includes("Element type is invalid")) {
+                console.warn("⚠️ Detectado Error #130 (Componente Inválido). Revisando estado global...");
+                // Intentamos buscar componentes nulos en el espacio de nombres de Gatsby si es posible
+                if (window.___loader) {
+                  console.log("Gatsby loader detectado. El error ocurre durante la hidratación.");
+                }
+              }
+
               if (msg.toLowerCase().includes("export") || msg.toLowerCase().includes("unexpected token")) {
-                console.warn("⚠️ Se detectó una fuga de ESM (export). Escaneando todos los scripts...");
+                console.warn("⚠️ Se detectó una fuga de ESM (export). Escaneando scripts...");
                 scanScripts();
               }
               console.groupEnd();
@@ -61,7 +68,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
             });
           })();
         `,
-            }}
-        />,
-    ]);
+      }}
+    />,
+  ]);
 };

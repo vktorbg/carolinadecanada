@@ -1,29 +1,21 @@
 const path = require('path');
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  // Fix for Webpack 5 ESM resolution (especially for Framer Motion and Lucide)
   actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        // Force CJS versions for all motion-related packages to prevent unitranspiled 'export' tokens
-        // and 'Class constructor' errors in production bundles.
-        'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/cjs/index.js'),
-        'motion-dom': path.resolve(__dirname, 'node_modules/motion-dom/dist/cjs/index.js'),
-        'motion-utils': path.resolve(__dirname, 'node_modules/motion-utils/dist/cjs/index.js'),
-      },
-      fullySpecified: false,
-    },
     module: {
       rules: [
         {
-          test: /\.mjs$/,
-          include: /node_modules/,
-          type: 'javascript/auto',
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
         },
       ],
     },
   });
 
-  // Force transpilation only for packages that leak 'export' or need Babel processing
+  // Force transpilation of modern ES6 packages that are known to have issues in Gatsby's build
   if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
@@ -33,6 +25,9 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
             include: (modulePath) => {
               const normalizedPath = modulePath.replace(/\\/g, '/');
               return [
+                'node_modules/framer-motion',
+                'node_modules/motion-dom',
+                'node_modules/motion-utils',
                 'node_modules/lucide-react',
                 'node_modules/firebase',
                 'node_modules/@firebase',
