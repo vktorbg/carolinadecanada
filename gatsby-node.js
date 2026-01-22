@@ -4,12 +4,8 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        // Force CJS versions for all motion and icon packages to prevent unitranspiled 'export' tokens
-        // and 'Class constructor' errors in production bundles.
+        // Force CJS version of framer-motion to avoid 'Class constructor' TypeError in production
         'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/cjs/index.js'),
-        'motion-dom': path.resolve(__dirname, 'node_modules/motion-dom/dist/cjs/index.js'),
-        'motion-utils': path.resolve(__dirname, 'node_modules/motion-utils/dist/cjs/index.js'),
-        'lucide-react': path.resolve(__dirname, 'node_modules/lucide-react/dist/cjs/lucide-react.js'),
       },
       fullySpecified: false,
     },
@@ -24,7 +20,7 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
     },
   });
 
-  // Force transpilation only for remaining packages that leak 'export' or need Babel processing
+  // Aggressive transpilation for all packages that might contain ESM syntax
   if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
@@ -34,9 +30,13 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
             include: (modulePath) => {
               const normalizedPath = modulePath.replace(/\\/g, '/');
               return [
+                'node_modules/lucide-react',
                 'node_modules/firebase',
                 'node_modules/@firebase',
                 'node_modules/react-hot-toast',
+                'node_modules/motion-dom',
+                'node_modules/motion-utils',
+                'node_modules/framer-motion'
               ].some(pkg => normalizedPath.includes(pkg));
             },
             use: loaders.js(),
