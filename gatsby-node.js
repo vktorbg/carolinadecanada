@@ -1,21 +1,26 @@
 const path = require('path');
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
-  // Fix for Webpack 5 ESM resolution issues (common in Framer Motion 10+)
   actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        // Force CJS version of framer-motion to avoid 'Class constructor' TypeError in production
+        'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/cjs/index.js'),
+      },
+      fullySpecified: false,
+    },
     module: {
       rules: [
         {
-          test: /\.m?js$/,
-          resolve: {
-            fullySpecified: false,
-          },
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
         },
       ],
     },
   });
 
-  // Force transpilation of modern ES6 packages using Gatsby's default loader
+  // Surgical transpilation for packages that leak 'export' tokens or need Babel processing
   if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
@@ -25,9 +30,9 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
             include: (filepath) => {
               const normalizedPath = filepath.replace(/\\/g, '/');
               return (
-                normalizedPath.includes('node_modules/lucide-react') ||
-                normalizedPath.includes('node_modules/framer-motion') ||
-                normalizedPath.includes('node_modules/firebase')
+                normalizedPath.includes('node_modules/firebase') ||
+                normalizedPath.includes('node_modules/@firebase') ||
+                normalizedPath.includes('node_modules/lucide-react')
               );
             },
             use: loaders.js(),
