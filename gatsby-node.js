@@ -4,8 +4,12 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        // Force CJS version of framer-motion to avoid 'Class constructor' TypeError in production
+        // Force CJS versions for all motion and icon packages to prevent unitranspiled 'export' tokens
+        // and 'Class constructor' errors in production bundles.
         'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/cjs/index.js'),
+        'motion-dom': path.resolve(__dirname, 'node_modules/motion-dom/dist/cjs/index.js'),
+        'motion-utils': path.resolve(__dirname, 'node_modules/motion-utils/dist/cjs/index.js'),
+        'lucide-react': path.resolve(__dirname, 'node_modules/lucide-react/dist/cjs/lucide-react.js'),
       },
       fullySpecified: false,
     },
@@ -20,20 +24,20 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
     },
   });
 
-  // Surgical transpilation for packages that leak 'export' tokens or need Babel processing
+  // Force transpilation only for remaining packages that leak 'export' or need Babel processing
   if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
         rules: [
           {
             test: /\.m?js$/,
-            include: (filepath) => {
-              const normalizedPath = filepath.replace(/\\/g, '/');
-              return (
-                normalizedPath.includes('node_modules/firebase') ||
-                normalizedPath.includes('node_modules/@firebase') ||
-                normalizedPath.includes('node_modules/lucide-react')
-              );
+            include: (modulePath) => {
+              const normalizedPath = modulePath.replace(/\\/g, '/');
+              return [
+                'node_modules/firebase',
+                'node_modules/@firebase',
+                'node_modules/react-hot-toast',
+              ].some(pkg => normalizedPath.includes(pkg));
             },
             use: loaders.js(),
           },
