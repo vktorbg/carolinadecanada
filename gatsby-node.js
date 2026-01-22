@@ -1,32 +1,36 @@
 const path = require('path');
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
-  // Force transpilation of modern ES6 packages that might cause issues in production
+  // Fix for Webpack 5 ESM resolution issues (common in Framer Motion 10+)
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+      ],
+    },
+  });
+
+  // Force transpilation of modern ES6 packages using Gatsby's default loader
   if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
         rules: [
           {
             test: /\.m?js$/,
-            include: /[\\/]node_modules[\\/](lucide-react|framer-motion|firebase)[\\/]/,
-            resolve: {
-              fullySpecified: false,
+            include: (filepath) => {
+              const normalizedPath = filepath.replace(/\\/g, '/');
+              return (
+                normalizedPath.includes('node_modules/lucide-react') ||
+                normalizedPath.includes('node_modules/framer-motion') ||
+                normalizedPath.includes('node_modules/firebase')
+              );
             },
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  [
-                    'babel-preset-gatsby',
-                    {
-                      targets: {
-                        browsers: ['>0.25%', 'not dead', 'not ie 11'],
-                      },
-                    },
-                  ],
-                ],
-              },
-            },
+            use: loaders.js(),
           },
         ],
       },
