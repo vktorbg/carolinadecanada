@@ -65,6 +65,8 @@ const plugins = [
 ];
 
 // Add Contentful plugin only if configured
+// Temporarily disabled - uncomment when ready to connect Contentful
+/*
 if (hasContentfulConfig()) {
   plugins.splice(5, 0, {
     resolve: 'gatsby-source-contentful',
@@ -74,6 +76,7 @@ if (hasContentfulConfig()) {
     },
   });
 }
+*/
 
 module.exports = {
   siteMetadata: {
