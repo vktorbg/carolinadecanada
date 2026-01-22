@@ -1,5 +1,39 @@
 const path = require('path');
 
+exports.onCreateWebpackConfig = ({ actions, stage }) => {
+  // Force transpilation of modern ES6 packages
+  if (stage === 'build-javascript' || stage === 'develop') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /\.m?js$/,
+            include: [
+              /node_modules\/lucide-react/,
+              /node_modules\/framer-motion/,
+            ],
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  [
+                    'babel-preset-gatsby',
+                    {
+                      targets: {
+                        browsers: ['>0.25%', 'not dead', 'not ie 11'],
+                      },
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
+};
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
