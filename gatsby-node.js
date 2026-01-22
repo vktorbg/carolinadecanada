@@ -1,17 +1,17 @@
 const path = require('path');
 
-exports.onCreateWebpackConfig = ({ actions, stage }) => {
-  // Force transpilation of modern ES6 packages
-  if (stage === 'build-javascript' || stage === 'develop') {
+exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  // Force transpilation of modern ES6 packages that might cause issues in production
+  if (stage === 'build-javascript' || stage === 'develop' || stage === 'build-html') {
     actions.setWebpackConfig({
       module: {
         rules: [
           {
             test: /\.m?js$/,
-            include: [
-              /node_modules\/lucide-react/,
-              /node_modules\/framer-motion/,
-            ],
+            include: /[\\/]node_modules[\\/](lucide-react|framer-motion|firebase)[\\/]/,
+            resolve: {
+              fullySpecified: false,
+            },
             use: {
               loader: 'babel-loader',
               options: {
@@ -39,9 +39,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Skip dynamic page creation if Contentful is not configured
   const hasContentful = process.env.CONTENTFUL_SPACE_ID &&
-                        process.env.CONTENTFUL_ACCESS_TOKEN &&
-                        process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
-                        process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
+    process.env.CONTENTFUL_ACCESS_TOKEN &&
+    process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
+    process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
 
   if (!hasContentful) {
     reporter.info('Contentful is not configured. Skipping recipe and category page creation. Configure Contentful credentials in .env to enable dynamic pages.');
