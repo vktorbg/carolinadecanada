@@ -3,7 +3,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { db, collection, addDoc, serverTimestamp } from '../../firebase';
+// import { db, collection, addDoc, serverTimestamp } from '../../firebase';
 
 const NewsletterSection = () => {
   const { t, i18n } = useTranslation();
@@ -21,7 +21,12 @@ const NewsletterSection = () => {
     setLoading(true);
 
     try {
-      // Check if Firebase is initialized
+      // Firebase is disabled by user request
+      console.log('Newsletter subscription (Firebase disabled):', email, i18n.language);
+      toast.success(t('home.newsletter.success'));
+      setEmail('');
+
+      /* 
       if (typeof window !== 'undefined' && db) {
         await addDoc(collection(db, 'newsletterSubscribers'), {
           email,
@@ -29,15 +34,10 @@ const NewsletterSection = () => {
           subscribedAt: serverTimestamp(),
           status: 'active'
         });
-
         toast.success(t('home.newsletter.success'));
         setEmail('');
-      } else {
-        // Fallback if Firebase is not configured
-        console.log('Newsletter subscription:', email, i18n.language);
-        toast.success(t('home.newsletter.success'));
-        setEmail('');
-      }
+      } 
+      */
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       toast.error(t('home.newsletter.error'));

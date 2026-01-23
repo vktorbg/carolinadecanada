@@ -29,8 +29,6 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
                 'node_modules/motion-dom',
                 'node_modules/motion-utils',
                 'node_modules/lucide-react',
-                'node_modules/firebase',
-                'node_modules/@firebase',
                 'node_modules/react-hot-toast',
               ].some(pkg => normalizedPath.includes(pkg));
             },
