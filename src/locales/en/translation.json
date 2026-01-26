@@ -89,12 +89,22 @@
   },
   "about": {
     "title": "About Carolina de Canadá",
+    "subtitle": "Bridging cultures through the aroma of freshly baked bread.",
     "welcome": "Welcome to my Canadian kitchen",
     "intro": "The goal of Carolina de Canadá is to be a resource for those who have enjoyed my baking and recipes, heard of their fame, or for those who have discovered them by chance.",
+    "story_title": "My Story",
+    "story_text": "I was born in Canada, but my heart has traveled many places. Carolina de Canadá was born from a simple desire: to share the warmth of my home with the world. It's not just about ingredients, but about the memories we create around the table.",
     "mission_title": "My Mission",
     "mission_text": "I am dedicated to sharing the best of Canadian culinary traditions with a bilingual audience, bridging cultural communities through the universal language of food.",
     "unique_title": "Authenticity with a Twist",
     "unique_text": "The recipes you find here are authentically Canadian, with some special adaptations that make them incredible. Every recipe is shared in both English and Spanish with love.",
+    "fun_facts_title": "Fun facts about me",
+    "fun_fact_1_title": "Maple Lover",
+    "fun_fact_1_desc": "Like a true Canadian, I believe maple syrup makes almost any recipe better.",
+    "fun_fact_2_title": "Bilingual at Heart",
+    "fun_fact_2_desc": "I love how food can connect cultures without needing a dictionary.",
+    "fun_fact_3_title": "Sweet Perfectionist",
+    "fun_fact_3_desc": "I've baked hundreds of brownies until finding the perfect texture.",
     "quote": "Enjoy your next delicious moment!"
   }
 }

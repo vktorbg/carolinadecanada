@@ -89,12 +89,22 @@
   },
   "about": {
     "title": "Sobre Carolina de Canadá",
+    "subtitle": "Un puente entre culturas a través del aroma de un pan recién horneado.",
     "welcome": "Bienvenidos a mi cocina canadiense",
     "intro": "El objetivo de Carolina de Canadá es ser un recurso para quienes han disfrutado de mis reposterías y recetas, han oído hablar de su fama o para quienes las han descubierto por casualidad.",
+    "story_title": "Mi Historia",
+    "story_text": "Nací en Canadá, pero mi corazón ha viajado por muchos rincones. Carolina de Canadá nació de un deseo sencillo: compartir el calor de mi hogar con el mundo. No solo se trata de ingredientes, sino de los recuerdos que creamos alrededor de la mesa.",
     "mission_title": "Mi Misión",
     "mission_text": "Me dedico a compartir lo mejor de las tradiciones culinarias canadienses con una audiencia bilingüe, uniendo comunidades culturales a través del lenguaje universal de la comida.",
     "unique_title": "Autenticidad con un Toque Especial",
     "unique_text": "Las recetas que encontrarás aquí son auténticamente canadienses, con algunas adaptaciones especiales que las hacen increíbles. Cada receta se comparte en inglés y español con mucho amor.",
+    "fun_facts_title": "Curiosidades sobre mí",
+    "fun_fact_1_title": "Amante del Arce",
+    "fun_fact_1_desc": "Como buena canadiense, creo que el jarabe de arce mejora casi cualquier receta.",
+    "fun_fact_2_title": "Bilingüe de Corazón",
+    "fun_fact_2_desc": "Amo cómo la comida puede conectar culturas sin necesidad de diccionarios.",
+    "fun_fact_3_title": "Perfeccionista del Dulce",
+    "fun_fact_3_desc": "He horneado cientos de brownies hasta encontrar la textura perfecta.",
     "quote": "¡Disfruta tu próximo momento delicioso!"
   }
 }
