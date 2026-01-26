@@ -18,6 +18,7 @@
       "link": "Más Sobre Mí"
     },
     "featured": {
+      "badge": "Selección Especial",
       "title": "Recetas Destacadas",
       "viewAll": "Ver Todas las Recetas",
       "brownies": {
@@ -34,7 +35,9 @@
       }
     },
     "categories": {
+      "badge": "Explora por Categoría",
       "title": "Categorías de Recetas",
+      "viewAll": "Ver todas las recetas",
       "explore": "Explorar",
       "breads_desc": "Panes calientes y reconfortantes hechos con ingredientes sencillos y saludables.",
       "cakes_desc": "Pasteles deliciosos hechos para compartir y celebrar con los seres queridos.",

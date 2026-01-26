@@ -51,7 +51,7 @@ const FeaturedRecipes = () => {
         >
           <div className="absolute -left-4 top-0 bottom-0 w-1 bg-brand-terracotta/20 hidden md:block" />
           <span className="text-brand-terracotta font-bold uppercase tracking-[0.2em] text-xs mb-3 block">
-            Selección Especial
+            {t('home.featured.badge')}
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-brand-charcoal max-w-2xl">
             {t('home.featured.title')}

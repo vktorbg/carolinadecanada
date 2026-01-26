@@ -37,7 +37,7 @@ const CategoryShowcase = () => {
         >
           <div>
             <span className="text-brand-terracotta font-bold uppercase tracking-[0.2em] text-xs mb-3 block">
-              Explora por Categoría
+              {t('home.categories.badge')}
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-medium text-brand-charcoal">
               {t('home.categories.title')}
@@ -47,7 +47,7 @@ const CategoryShowcase = () => {
             to="/recipes"
             className="text-brand-charcoal font-semibold text-sm border-b-2 border-brand-terracotta pb-1 hover:text-brand-terracotta transition-colors"
           >
-            Ver todas las recetas
+            {t('home.categories.viewAll')}
           </Link>
         </motion.div>
 

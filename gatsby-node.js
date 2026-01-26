@@ -1,4 +1,5 @@
 const path = require('path');
+require('dotenv').config({ path: `.env` });
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   // Fix for Webpack 5 ESM resolution (especially for Framer Motion and Lucide)
@@ -48,6 +49,11 @@ exports.createSchemaCustomization = ({ actions, reporter }) => {
     process.env.CONTENTFUL_ACCESS_TOKEN &&
     process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
     process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
+
+  console.log('--- CONTENTFUL CONFIG CHECK ---');
+  console.log('SPACE_ID exists:', !!process.env.CONTENTFUL_SPACE_ID);
+  console.log('ACCESS_TOKEN exists:', !!process.env.CONTENTFUL_ACCESS_TOKEN);
+  console.log('hasContentful:', hasContentful);
 
   // ONLY define these types if Contentful is NOT configured.
   // This prevents build errors when the plugin is missing,

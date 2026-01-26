@@ -18,6 +18,7 @@
       "link": "More About Me"
     },
     "featured": {
+      "badge": "Special Selection",
       "title": "Featured Recipes",
       "viewAll": "View All Recipes",
       "brownies": {
@@ -34,7 +35,9 @@
       }
     },
     "categories": {
+      "badge": "Explore by Category",
       "title": "Recipe Categories",
+      "viewAll": "View all recipes",
       "explore": "Explore",
       "breads_desc": "Warm, soul-satisfying bread made with simple, wholesome ingredients.",
       "cakes_desc": "Delicious cakes made for sharing and celebrating with loved ones.",
