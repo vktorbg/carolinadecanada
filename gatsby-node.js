@@ -1,5 +1,4 @@
 const path = require('path');
-require('dotenv').config({ path: `.env` });
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   // Fix for Webpack 5 ESM resolution (especially for Framer Motion and Lucide)
@@ -38,101 +37,6 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
         ],
       },
     });
-  }
-};
-
-exports.createSchemaCustomization = ({ actions, reporter }) => {
-  const { createTypes } = actions;
-
-  // Check if Contentful is configured (same logic as gatsby-config and createPages)
-  const hasContentful = process.env.CONTENTFUL_SPACE_ID &&
-    process.env.CONTENTFUL_ACCESS_TOKEN &&
-    process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
-    process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
-
-  console.log('--- CONTENTFUL CONFIG CHECK ---');
-  console.log('SPACE_ID exists:', !!process.env.CONTENTFUL_SPACE_ID);
-  console.log('ACCESS_TOKEN exists:', !!process.env.CONTENTFUL_ACCESS_TOKEN);
-  console.log('hasContentful:', hasContentful);
-
-  // ONLY define these types if Contentful is NOT configured.
-  // This prevents build errors when the plugin is missing,
-  // but doesn't interfere with real data when it's present.
-  if (!hasContentful) {
-    reporter.info('Contentful credentials missing. Customizing schema to prevent build errors.');
-    const typeDefs = `
-      enum GatsbyImagePlaceholder {
-        BLURRED
-        DOMINANT_COLOR
-        NONE
-        TRACED_SVG
-      }
-
-      enum GatsbyImageLayout {
-        CONSTRAINED
-        FIXED
-        FULL_WIDTH
-      }
-
-      type ContentfulRecipe implements Node {
-        title: String
-        slug: String
-        node_locale: String
-        difficulty: String
-        totalTime: Int
-        servings: Int
-        description: ContentfulRecipeDescription
-        ingredients: ContentfulRecipeIngredients
-        instructions: ContentfulRecipeInstructions
-        featuredImage: ContentfulAsset
-        category: ContentfulCategory
-        createdAt: Date @dateformat
-        updatedAt: Date @dateformat
-      }
-
-      type ContentfulRecipeDescription {
-        raw: String
-      }
-
-      type ContentfulRecipeIngredients {
-        raw: String
-      }
-
-      type ContentfulRecipeInstructions {
-        raw: String
-      }
-
-      type ContentfulCategory implements Node {
-        name: String
-        slug: String
-        node_locale: String
-        createdAt: Date @dateformat
-      }
-
-      type ContentfulAsset implements Node {
-        gatsbyImageData(
-          placeholder: GatsbyImagePlaceholder
-          width: Int
-          height: Int
-          layout: GatsbyImageLayout
-          formats: [String]
-          aspectRatio: Float
-          quality: Int
-          backgroundColor: String
-          breakpoints: [Int]
-        ): JSON
-        title: String
-        description: String
-        file: ContentfulAssetFile
-      }
-
-      type ContentfulAssetFile {
-        url: String
-        fileName: String
-        contentType: String
-      }
-    `;
-    createTypes(typeDefs);
   }
 };
 
@@ -218,4 +122,3 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.info(`Created ${recipeResult.data.allContentfulCategory.nodes.length} category pages`);
   }
 };
-
