@@ -6,9 +6,9 @@ const defaultLanguage = 'en';
 // Helper to check if Contentful is configured
 const hasContentfulConfig = () => {
   return process.env.CONTENTFUL_SPACE_ID &&
-         process.env.CONTENTFUL_ACCESS_TOKEN &&
-         process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
-         process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
+    process.env.CONTENTFUL_ACCESS_TOKEN &&
+    process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
+    process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
 };
 
 // Build plugins array
@@ -65,10 +65,8 @@ const plugins = [
 ];
 
 // Add Contentful plugin only if configured
-// Temporarily disabled - uncomment when ready to connect Contentful
-/*
 if (hasContentfulConfig()) {
-  plugins.splice(5, 0, {
+  plugins.push({
     resolve: 'gatsby-source-contentful',
     options: {
       spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -76,7 +74,6 @@ if (hasContentfulConfig()) {
     },
   });
 }
-*/
 
 module.exports = {
   siteMetadata: {

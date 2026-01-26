@@ -9,7 +9,7 @@ const AboutPage = () => {
 
   return (
     <Layout minimal={true}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ const AboutPage = () => {
             <div className="flex flex-col md:flex-row">
               <div className="md:w-1/3">
                 <img
-                  src="/images/profile.jpg"
+                  src="/images/profile.jpeg"
                   alt="Carolina"
                   className="w-full h-full object-cover min-h-[300px]"
                 />

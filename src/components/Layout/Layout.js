@@ -10,7 +10,7 @@ const Layout = ({ children, minimal = false, noTopPadding = false }) => {
     <ThemeProvider theme={theme}>
       <div className="flex flex-col min-h-screen bg-brand-cream">
         <Header minimal={minimal} />
-        <main className={`flex-grow ${noTopPadding ? '' : 'pt-0'}`}>
+        <main className={`flex-grow ${noTopPadding ? '' : 'pt-24 md:pt-28'}`}>
           {children}
         </main>
         <Footer />

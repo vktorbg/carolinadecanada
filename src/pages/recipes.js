@@ -13,7 +13,7 @@ const RecipesPageContent = ({ recipes, categories }) => {
   const filteredRecipes = useRecipeSearch(recipes);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
       <div className="mb-8">
         <h1 className="text-4xl md:text-5xl font-display font-bold text-brand-charcoal mb-4">
           {t('nav.recipes')}
@@ -40,10 +40,20 @@ const RecipesPageContent = ({ recipes, categories }) => {
   );
 };
 
-const RecipesPage = () => {
-  // Placeholder data - will be replaced with Contentful data
-  const recipes = [];
-  const categories = [];
+const RecipesPage = ({ data, pageContext }) => {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language;
+
+  // Filter recipes by current language
+  const recipes = (data?.allContentfulRecipe?.nodes || []).filter(node => {
+    const nodeLang = node.node_locale ? node.node_locale.split('-')[0] : '';
+    return nodeLang === currentLang;
+  });
+
+  const categories = (data?.allContentfulCategory?.nodes || []).filter(node => {
+    const nodeLang = node.node_locale ? node.node_locale.split('-')[0] : '';
+    return nodeLang === currentLang;
+  });
 
   return (
     <Layout minimal={true}>
@@ -77,6 +87,31 @@ export const query = graphql`
           data
           language
         }
+      }
+    }
+    allContentfulRecipe {
+      nodes {
+        slug
+        title
+        node_locale
+        description {
+          raw
+        }
+        difficulty
+        totalTime
+        servings
+        featuredImage {
+          gatsbyImageData(placeholder: BLURRED, width: 600)
+        }
+        category {
+          name
+        }
+      }
+    }
+    allContentfulCategory {
+      nodes {
+        name
+        node_locale
       }
     }
   }

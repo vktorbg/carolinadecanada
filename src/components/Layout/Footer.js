@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { Instagram, Facebook, Youtube, Mail } from 'lucide-react';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -14,69 +12,35 @@ const Footer = () => {
     { label: t('nav.resources'), path: '/resources' },
   ];
 
-  const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Mail, href: '#', label: 'Email' },
-  ];
-
   return (
-    <footer className="bg-brand-charcoal text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand Section */}
-          <div>
-            <h3 className="text-2xl font-display font-bold text-brand-terracotta mb-3">
-              Carolina de Canadá
-            </h3>
-            <p className="text-neutral-300 text-sm leading-relaxed">
-              {t('footer.tagline')}
-            </p>
-          </div>
+    <footer className="bg-brand-charcoal text-white py-12 border-t border-neutral-800">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center space-y-8">
+          {/* Logo / Brand */}
+          <Link to="/" className="text-2xl font-display font-bold text-brand-terracotta hover:opacity-90 transition-opacity">
+            Carolina de Canadá
+          </Link>
 
-          {/* Navigation Links */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Navigation</h4>
-            <ul className="space-y-2">
+          {/* Navigation Links in one line */}
+          <nav>
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               {navLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-neutral-300 hover:text-brand-terracotta transition-colors text-sm"
+                    className="text-neutral-400 hover:text-brand-terracotta transition-colors text-sm font-medium uppercase tracking-widest"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Social Media */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Connect</h4>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-neutral-700 rounded-lg hover:bg-brand-terracotta transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-neutral-700 pt-8 text-center">
-          <p className="text-neutral-400 text-sm">
+          {/* Copyright */}
+          <div className="text-neutral-500 text-xs tracking-wide">
             © {currentYear} Carolina de Canadá. {t('footer.rights')}
-          </p>
+          </div>
         </div>
       </div>
     </footer>
@@ -84,3 +48,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles } from 'lucide-react';
 
@@ -64,7 +63,7 @@ const HeroSection = () => {
                 to="/about"
                 className="group px-10 py-4 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-charcoal transition-all duration-300 hover:bg-white active:scale-95"
               >
-                Sobre Mí
+                {t('nav.about')}
               </Link>
             </motion.div>
           </div>

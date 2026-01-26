@@ -8,26 +8,8 @@ import CategoryShowcase from '../components/Home/CategoryShowcase';
 import NewsletterSection from '../components/Home/NewsletterSection';
 
 const HomePage = () => {
-  // Diagnostic logs - ONLY in production to catch the Netlify issue
-  if (typeof window !== 'undefined') {
-    console.log("🛠️ [DIAGNOSTIC] Checking Home Page components...");
-    console.log("HeroSection type:", typeof HeroSection);
-    console.log("AboutSnippet type:", typeof AboutSnippet);
-    console.log("FeaturedRecipes type:", typeof FeaturedRecipes);
-    console.log("CategoryShowcase type:", typeof CategoryShowcase);
-    console.log("NewsletterSection type:", typeof NewsletterSection);
-  }
-
-  // Safety fallback: if any component is an object (Error #130 candidate), we can log it
-  const components = { HeroSection, AboutSnippet, FeaturedRecipes, CategoryShowcase, NewsletterSection };
-  Object.entries(components).forEach(([name, comp]) => {
-    if (comp && typeof comp === 'object' && !Array.isArray(comp)) {
-      console.error(`🚨 component "${name}" is an OBJECT instead of a FUNCTION. This causes Error #130.`);
-    }
-  });
-
   return (
-    <Layout>
+    <Layout noTopPadding={true}>
       <HeroSection />
       <AboutSnippet />
       <FeaturedRecipes />

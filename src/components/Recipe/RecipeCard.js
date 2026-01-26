@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 import { Clock, ChefHat, Users, ArrowRight } from 'lucide-react';
 
@@ -89,7 +88,11 @@ const RecipeCard = ({ recipe }) => {
           {/* Description */}
           {recipe.description && (
             <p className="text-neutral-600 text-sm leading-relaxed mb-5 line-clamp-2">
-              {recipe.description}
+              {typeof recipe.description === 'string'
+                ? recipe.description
+                : recipe.description?.raw
+                  ? JSON.parse(recipe.description.raw).content.find(c => c.nodeType === 'paragraph')?.content.find(c => c.nodeType === 'text')?.value || ''
+                  : ''}
             </p>
           )}
 

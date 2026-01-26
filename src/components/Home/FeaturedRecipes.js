@@ -1,57 +1,43 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { graphql, useStaticQuery } from 'gatsby';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 import RecipeCard from '../Recipe/RecipeCard';
 
 const FeaturedRecipes = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
 
-  // This query will be used once Contentful is set up
-  // For now, we'll show a placeholder structure
   const data = useStaticQuery(graphql`
     query FeaturedRecipesQuery {
-      site {
-        siteMetadata {
+      allContentfulRecipe(limit: 3, sort: { createdAt: DESC }) {
+        nodes {
+          slug
           title
+          description {
+            raw
+          }
+          difficulty
+          totalTime
+          servings
+          node_locale
+          featuredImage {
+            gatsbyImageData(placeholder: BLURRED, width: 600)
+          }
+          category {
+            name
+          }
         }
       }
     }
   `);
 
-  // Placeholder data - will be replaced with real Contentful data
-  const featuredRecipes = [
-    {
-      slug: 'brownies-de-brooke',
-      title: t('home.featured.brownies.title'),
-      description: t('home.featured.brownies.desc'),
-      featuredImage: '/images/brownies.png',
-      difficulty: 'Easy',
-      totalTime: 45,
-      servings: 12,
-      category: { name: 'Desserts' }
-    },
-    {
-      slug: 'arroz-con-leche',
-      title: t('home.featured.arroz.title'),
-      description: t('home.featured.arroz.desc'),
-      featuredImage: '/images/arroz-con-leche.png',
-      difficulty: 'Easy',
-      totalTime: 60,
-      servings: 6,
-      category: { name: 'Desserts' }
-    },
-    {
-      slug: 'pan-artesanal',
-      title: t('home.featured.bread.title'),
-      description: t('home.featured.bread.desc'),
-      featuredImage: '/images/canadian-bread.png',
-      difficulty: 'Medium',
-      totalTime: 180,
-      servings: 1,
-      category: { name: 'Breads' }
-    }
-  ];
+  // Filter recipes by current language
+  const featuredRecipes = (data?.allContentfulRecipe?.nodes || [])
+    .filter(node => {
+      const nodeLang = node.node_locale ? node.node_locale.split('-')[0] : '';
+      return nodeLang === currentLang;
+    });
 
   return (
     <section className="py-16 bg-white">

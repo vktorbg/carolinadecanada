@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 
 const AboutSnippet = () => {
@@ -22,7 +21,7 @@ const AboutSnippet = () => {
                             <div className="relative p-3 bg-white shadow-xl rotate-1 group hover:rotate-0 transition-transform duration-500 max-w-[340px]">
                                 <div className="overflow-hidden aspect-[4/5] rounded-sm">
                                     <img
-                                        src="/images/profile.jpg"
+                                        src="/images/profile.jpeg"
                                         alt="Carolina de Canadá"
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />
@@ -46,7 +45,7 @@ const AboutSnippet = () => {
                             className="w-full lg:w-8/12"
                         >
                             <span className="text-brand-terracotta font-accent-script text-4xl mb-6 block">
-                                Hola, soy Carolina
+                                {t('home.about.greeting')}
                             </span>
 
                             <h2 className="text-4xl md:text-5xl font-display font-medium text-brand-charcoal mb-8 leading-tight">

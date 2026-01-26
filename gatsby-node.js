@@ -54,7 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  // Query all recipes
+  // Query all recipes and categories
   const recipeResult = await graphql(`
     query {
       allContentfulRecipe {
@@ -65,7 +65,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
       allContentfulCategory {
         nodes {
-          slug
+          name
           node_locale
         }
       }
@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const recipeTemplate = path.resolve('./src/templates/recipe-detail.js');
+  const recipeTemplate = path.resolve('./src/templates/recipe-template.js');
   const categoryTemplate = path.resolve('./src/templates/category.js');
 
   // Create recipe detail pages
@@ -101,14 +101,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create category pages
   if (recipeResult.data?.allContentfulCategory?.nodes) {
     recipeResult.data.allContentfulCategory.nodes.forEach(category => {
+      // Use name as slug if slug is not available (slugify it)
+      const categorySlug = category.slug || (category.name ? category.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') : '');
+
+      if (!categorySlug || !category.name) return;
+
       const language = category.node_locale;
       const pathPrefix = language === 'es' ? '/es' : '';
 
       createPage({
-        path: `${pathPrefix}/category/${category.slug}`,
+        path: `${pathPrefix}/category/${categorySlug}`,
         component: categoryTemplate,
         context: {
-          slug: category.slug,
+          slug: categorySlug,
+          categoryName: category.name,
           language: language,
         },
       });
@@ -116,3 +122,4 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.info(`Created ${recipeResult.data.allContentfulCategory.nodes.length} category pages`);
   }
 };
+
