@@ -40,6 +40,60 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   }
 };
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type ContentfulRecipe implements Node {
+      title: String
+      slug: String
+      node_locale: String
+      difficulty: String
+      totalTime: Int
+      servings: Int
+      description: ContentfulRecipeDescription
+      ingredients: ContentfulRecipeIngredients
+      instructions: ContentfulRecipeInstructions
+      featuredImage: ContentfulAsset
+      category: ContentfulCategory
+      createdAt: Date @dateformat
+      updatedAt: Date @dateformat
+    }
+
+    type ContentfulRecipeDescription {
+      raw: String
+    }
+
+    type ContentfulRecipeIngredients {
+      raw: String
+    }
+
+    type ContentfulRecipeInstructions {
+      raw: String
+    }
+
+    type ContentfulCategory implements Node {
+      name: String
+      slug: String
+      node_locale: String
+      createdAt: Date @dateformat
+    }
+
+    type ContentfulAsset implements Node {
+      gatsbyImageData: JSON
+      title: String
+      description: String
+      file: ContentfulAssetFile
+    }
+
+    type ContentfulAssetFile {
+      url: String
+      fileName: String
+      contentType: String
+    }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
