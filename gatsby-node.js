@@ -78,12 +78,25 @@ exports.createSchemaCustomization = ({ actions }) => {
       createdAt: Date @dateformat
     }
 
+    enum GatsbyImagePlaceholder {
+      BLURRED
+      DOMINANT_COLOR
+      NONE
+      TRACED_SVG
+    }
+
+    enum GatsbyImageLayout {
+      CONSTRAINED
+      FIXED
+      FULL_WIDTH
+    }
+
     type ContentfulAsset implements Node {
       gatsbyImageData(
-        placeholder: String
+        placeholder: GatsbyImagePlaceholder
         width: Int
         height: Int
-        layout: String
+        layout: GatsbyImageLayout
         formats: [String]
         aspectRatio: Float
         quality: Int
