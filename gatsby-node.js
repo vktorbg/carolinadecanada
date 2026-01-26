@@ -40,81 +40,94 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   }
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
+exports.createSchemaCustomization = ({ actions, reporter }) => {
   const { createTypes } = actions;
-  const typeDefs = `
-    type ContentfulRecipe implements Node {
-      title: String
-      slug: String
-      node_locale: String
-      difficulty: String
-      totalTime: Int
-      servings: Int
-      description: ContentfulRecipeDescription
-      ingredients: ContentfulRecipeIngredients
-      instructions: ContentfulRecipeInstructions
-      featuredImage: ContentfulAsset
-      category: ContentfulCategory
-      createdAt: Date @dateformat
-      updatedAt: Date @dateformat
-    }
 
-    type ContentfulRecipeDescription {
-      raw: String
-    }
+  // Check if Contentful is configured (same logic as gatsby-config and createPages)
+  const hasContentful = process.env.CONTENTFUL_SPACE_ID &&
+    process.env.CONTENTFUL_ACCESS_TOKEN &&
+    process.env.CONTENTFUL_SPACE_ID !== 'placeholder' &&
+    process.env.CONTENTFUL_ACCESS_TOKEN !== 'placeholder';
 
-    type ContentfulRecipeIngredients {
-      raw: String
-    }
+  // ONLY define these types if Contentful is NOT configured.
+  // This prevents build errors when the plugin is missing,
+  // but doesn't interfere with real data when it's present.
+  if (!hasContentful) {
+    reporter.info('Contentful credentials missing. Customizing schema to prevent build errors.');
+    const typeDefs = `
+      enum GatsbyImagePlaceholder {
+        BLURRED
+        DOMINANT_COLOR
+        NONE
+        TRACED_SVG
+      }
 
-    type ContentfulRecipeInstructions {
-      raw: String
-    }
+      enum GatsbyImageLayout {
+        CONSTRAINED
+        FIXED
+        FULL_WIDTH
+      }
 
-    type ContentfulCategory implements Node {
-      name: String
-      slug: String
-      node_locale: String
-      createdAt: Date @dateformat
-    }
+      type ContentfulRecipe implements Node {
+        title: String
+        slug: String
+        node_locale: String
+        difficulty: String
+        totalTime: Int
+        servings: Int
+        description: ContentfulRecipeDescription
+        ingredients: ContentfulRecipeIngredients
+        instructions: ContentfulRecipeInstructions
+        featuredImage: ContentfulAsset
+        category: ContentfulCategory
+        createdAt: Date @dateformat
+        updatedAt: Date @dateformat
+      }
 
-    enum GatsbyImagePlaceholder {
-      BLURRED
-      DOMINANT_COLOR
-      NONE
-      TRACED_SVG
-    }
+      type ContentfulRecipeDescription {
+        raw: String
+      }
 
-    enum GatsbyImageLayout {
-      CONSTRAINED
-      FIXED
-      FULL_WIDTH
-    }
+      type ContentfulRecipeIngredients {
+        raw: String
+      }
 
-    type ContentfulAsset implements Node {
-      gatsbyImageData(
-        placeholder: GatsbyImagePlaceholder
-        width: Int
-        height: Int
-        layout: GatsbyImageLayout
-        formats: [String]
-        aspectRatio: Float
-        quality: Int
-        backgroundColor: String
-        breakpoints: [Int]
-      ): JSON
-      title: String
-      description: String
-      file: ContentfulAssetFile
-    }
+      type ContentfulRecipeInstructions {
+        raw: String
+      }
 
-    type ContentfulAssetFile {
-      url: String
-      fileName: String
-      contentType: String
-    }
-  `;
-  createTypes(typeDefs);
+      type ContentfulCategory implements Node {
+        name: String
+        slug: String
+        node_locale: String
+        createdAt: Date @dateformat
+      }
+
+      type ContentfulAsset implements Node {
+        gatsbyImageData(
+          placeholder: GatsbyImagePlaceholder
+          width: Int
+          height: Int
+          layout: GatsbyImageLayout
+          formats: [String]
+          aspectRatio: Float
+          quality: Int
+          backgroundColor: String
+          breakpoints: [Int]
+        ): JSON
+        title: String
+        description: String
+        file: ContentfulAssetFile
+      }
+
+      type ContentfulAssetFile {
+        url: String
+        fileName: String
+        contentType: String
+      }
+    `;
+    createTypes(typeDefs);
+  }
 };
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
