@@ -79,7 +79,17 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type ContentfulAsset implements Node {
-      gatsbyImageData: JSON
+      gatsbyImageData(
+        placeholder: String
+        width: Int
+        height: Int
+        layout: String
+        formats: [String]
+        aspectRatio: Float
+        quality: Int
+        backgroundColor: String
+        breakpoints: [Int]
+      ): JSON
       title: String
       description: String
       file: ContentfulAssetFile
