@@ -77,7 +77,7 @@ const HeroSection = () => {
           >
             <div className="relative z-10 w-full max-w-[480px] aspect-[4/5] overflow-hidden rounded-[60px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border-[16px] border-white">
               <img
-                src="/images/hero_pancakes.png"
+                src="/images/hero_pancakes.jpeg"
                 alt="Canadian Culinary Delights"
                 className="w-full h-full object-cover"
               />
