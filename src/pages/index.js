@@ -5,7 +5,6 @@ import HeroSection from '../components/Home/HeroSection';
 import AboutSnippet from '../components/Home/AboutSnippet';
 import FeaturedRecipes from '../components/Home/FeaturedRecipes';
 import CategoryShowcase from '../components/Home/CategoryShowcase';
-import NewsletterSection from '../components/Home/NewsletterSection';
 
 const HomePage = () => {
   return (
@@ -14,7 +13,6 @@ const HomePage = () => {
       <CategoryShowcase />
       <AboutSnippet />
       <FeaturedRecipes />
-      <NewsletterSection />
     </Layout>
   );
 };

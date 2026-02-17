@@ -53,7 +53,7 @@ const ResourcesPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-card p-8 hover:shadow-lg transition-shadow"
+                className="relative bg-white rounded-xl shadow-card p-8 opacity-50 grayscale pointer-events-none select-none"
               >
                 <div className="w-14 h-14 bg-brand-terracotta/10 rounded-lg flex items-center justify-center mb-4">
                   <resource.icon size={28} className="text-brand-terracotta" />
@@ -64,18 +64,11 @@ const ResourcesPage = () => {
                 <p className="text-neutral-600">
                   {resource.description}
                 </p>
+                <span className="absolute top-4 right-4 text-xs font-semibold uppercase tracking-widest text-neutral-400 border border-neutral-200 rounded-full px-3 py-1">
+                  Soon
+                </span>
               </motion.div>
             ))}
-          </div>
-
-          <div className="mt-12 bg-gradient-to-br from-brand-sage to-brand-earth rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-display font-bold mb-4">
-              More Resources Coming Soon
-            </h2>
-            <p className="text-white/90">
-              We're constantly adding new guides, tips, and resources to help you in the kitchen.
-              Check back regularly for updates!
-            </p>
           </div>
         </motion.div>
       </div>
