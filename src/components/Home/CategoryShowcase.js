@@ -14,9 +14,14 @@ const CategoryShowcase = () => {
         nodes {
           name
           node_locale
+          featuredRecipe {
+            featuredImage {
+              gatsbyImageData(placeholder: BLURRED, width: 200, height: 200)
+            }
+          }
         }
       }
-      allContentfulRecipe(sort: { createdAt: DESC }) {
+      allContentfulRecipe(sort: { updatedAt: DESC }) {
         nodes {
           node_locale
           category {
@@ -30,26 +35,42 @@ const CategoryShowcase = () => {
     }
   `);
 
-  // Build a map of category name -> latest recipe's featured image
+  // Build a map of category name -> image
+  // Priority: category's featuredRecipe field > most recently updated recipe in that category
   const categoryImages = useMemo(() => {
-    const map = {};
-    (data?.allContentfulRecipe?.nodes || []).forEach(recipe => {
+    const recipes = (data?.allContentfulRecipe?.nodes || []).filter(recipe => {
       const recipeLang = recipe.node_locale ? recipe.node_locale.split('-')[0] : '';
-      if (recipeLang !== currentLang) return;
-      (recipe.category || []).forEach(cat => {
-        if (cat?.name && !map[cat.name]) {
-          map[cat.name] = getImage(recipe.featuredImage);
+      return recipeLang === currentLang && recipe.featuredImage;
+    });
+
+    const map = {};
+    (data?.allContentfulCategory?.nodes || [])
+      .filter(n => (n.node_locale || '').split('-')[0] === currentLang)
+      .forEach(cat => {
+        // 1. Use manually chosen featuredRecipe if set
+        if (cat.featuredRecipe?.featuredImage) {
+          map[cat.name] = getImage(cat.featuredRecipe.featuredImage);
+          return;
+        }
+        // 2. Fall back to most recently updated recipe in this category
+        const match = recipes.find(recipe =>
+          (recipe.category || []).some(c => c?.name === cat.name)
+        );
+        if (match) {
+          map[cat.name] = getImage(match.featuredImage);
         }
       });
-    });
+
     return map;
   }, [data, currentLang]);
 
-  // Filter categories by current language and only show those with recipes
-  const categories = (data?.allContentfulCategory?.nodes || []).filter(node => {
-    const nodeLang = node.node_locale ? node.node_locale.split('-')[0] : '';
-    return nodeLang === currentLang && categoryImages[node.name];
-  });
+  // Filter categories by current language and only show those with recipes, sorted alphabetically
+  const categories = (data?.allContentfulCategory?.nodes || [])
+    .filter(node => {
+      const nodeLang = node.node_locale ? node.node_locale.split('-')[0] : '';
+      return nodeLang === currentLang && categoryImages[node.name];
+    })
+    .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
   return (
     <section className="pt-5 pb-8 lg:pt-6 lg:pb-10 bg-white border-b border-neutral-100 overflow-hidden">
