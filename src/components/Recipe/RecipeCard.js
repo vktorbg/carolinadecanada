@@ -10,9 +10,9 @@ const RecipeCard = ({ recipe }) => {
   const image = recipe.featuredImage ? getImage(recipe.featuredImage) : null;
 
   const difficultyColors = {
-    Easy: 'bg-brand-sage/20 text-brand-sage border-brand-sage/30',
-    Medium: 'bg-accent-honey/20 text-accent-honey border-accent-honey/30',
-    Hard: 'bg-brand-terracotta/20 text-brand-terracotta border-brand-terracotta/30',
+    Easy: 'bg-brand-sage/80 text-white border-brand-sage',
+    Medium: 'bg-accent-honey/80 text-white border-accent-honey',
+    Hard: 'bg-brand-terracotta/90 text-white border-brand-terracotta',
   };
 
   return (
@@ -23,7 +23,7 @@ const RecipeCard = ({ recipe }) => {
         className="relative bg-white rounded-3xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 h-full"
       >
         {/* Recipe Image */}
-        <div className="relative h-72 overflow-hidden bg-gradient-to-br from-brand-terracotta/10 to-brand-sage/10">
+        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-brand-terracotta/10 to-brand-sage/10">
           {image ? (
             <>
               <GatsbyImage
@@ -53,7 +53,7 @@ const RecipeCard = ({ recipe }) => {
           {/* Floating Badge - Difficulty */}
           {recipe.difficulty && (
             <div className="absolute top-5 left-5">
-              <span className={`px-3 py-1.5 rounded-xl text-xs font-bold backdrop-blur-sm border ${difficultyColors[recipe.difficulty] || 'bg-neutral-100 text-neutral-700'}`}>
+              <span className={`px-3 py-1.5 rounded-xl text-sm font-bold border ${difficultyColors[recipe.difficulty] || 'bg-neutral-100 text-neutral-700'}`}>
                 {t(`recipe.${recipe.difficulty.toLowerCase()}`)}
               </span>
             </div>
@@ -71,12 +71,14 @@ const RecipeCard = ({ recipe }) => {
 
         {/* Recipe Info */}
         <div className="p-6">
-          {/* Category Tag */}
-          {recipe.category && (
-            <div className="mb-3">
-              <span className="inline-block px-3 py-1 bg-gradient-to-r from-brand-terracotta/10 to-accent-honey/10 text-brand-terracotta text-xs font-bold rounded-lg border border-brand-terracotta/20">
-                {recipe.category.name}
-              </span>
+          {/* Category Tags */}
+          {recipe.category?.length > 0 && (
+            <div className="mb-3 flex flex-wrap gap-1">
+              {recipe.category.map(cat => (
+                <span key={cat.name} className="inline-block px-3 py-1 bg-gradient-to-r from-brand-terracotta/10 to-accent-honey/10 text-brand-terracotta text-xs font-bold rounded-lg border border-brand-terracotta/20">
+                  {cat.name}
+                </span>
+              ))}
             </div>
           )}
 

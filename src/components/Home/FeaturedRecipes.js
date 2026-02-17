@@ -10,7 +10,7 @@ const FeaturedRecipes = () => {
 
   const data = useStaticQuery(graphql`
     query FeaturedRecipesQuery {
-      allContentfulRecipe(limit: 3, sort: { createdAt: DESC }) {
+      allContentfulRecipe(limit: 5, sort: { createdAt: DESC }) {
         nodes {
           slug
           title
@@ -47,13 +47,13 @@ const FeaturedRecipes = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-left mb-16 relative"
+          className="text-left mb-10 relative"
         >
           <div className="absolute -left-4 top-0 bottom-0 w-1 bg-brand-terracotta/20 hidden md:block" />
           <span className="text-brand-terracotta font-bold uppercase tracking-[0.2em] text-xs mb-3 block">
             {t('home.featured.badge')}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-brand-charcoal max-w-2xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-brand-charcoal max-w-2xl">
             {t('home.featured.title')}
           </h2>
         </motion.div>

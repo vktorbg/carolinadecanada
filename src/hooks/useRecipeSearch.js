@@ -30,9 +30,9 @@ export const useRecipeSearch = (recipes) => {
 
       // Category filter
       if (selectedCategory) {
-        const categoryMatch =
-          recipe.category?.slug === selectedCategory ||
-          recipe.category?.name === selectedCategory;
+        const categoryMatch = (recipe.category || []).some(
+          cat => cat?.name === selectedCategory
+        );
         if (!categoryMatch) return false;
       }
 

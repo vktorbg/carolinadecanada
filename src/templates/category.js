@@ -99,7 +99,7 @@ export const query = graphql`
     contentfulCategory(name: { eq: $categoryName }) {
       name
     }
-    allContentfulRecipe(filter: { category: { name: { eq: $categoryName } } }) {
+    allContentfulRecipe(filter: { category: { elemMatch: { name: { eq: $categoryName } } } }) {
       nodes {
         title
         slug

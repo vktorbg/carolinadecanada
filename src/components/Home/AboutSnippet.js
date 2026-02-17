@@ -6,10 +6,10 @@ const AboutSnippet = () => {
     const { t } = useTranslation();
 
     return (
-        <section className="py-24 bg-brand-cream/20">
+        <section className="py-12 lg:py-16 bg-brand-cream/20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
                         {/* Image Column with Scrapbook effect */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -18,7 +18,7 @@ const AboutSnippet = () => {
                             transition={{ duration: 0.8 }}
                             className="w-full lg:w-4/12 flex justify-center lg:justify-start"
                         >
-                            <div className="relative p-3 bg-white shadow-xl rotate-1 group hover:rotate-0 transition-transform duration-500 max-w-[340px]">
+                            <div className="relative p-3 bg-white shadow-xl rotate-1 group hover:rotate-0 transition-transform duration-500 max-w-[280px]">
                                 <div className="overflow-hidden aspect-[4/5] rounded-sm">
                                     <img
                                         src="/images/profile.jpeg"
@@ -44,15 +44,15 @@ const AboutSnippet = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="w-full lg:w-8/12"
                         >
-                            <span className="text-brand-terracotta font-accent-script text-4xl mb-6 block">
+                            <span className="text-brand-terracotta font-accent-script text-3xl mb-4 block">
                                 {t('home.about.greeting')}
                             </span>
 
-                            <h2 className="text-4xl md:text-5xl font-display font-medium text-brand-charcoal mb-8 leading-tight">
+                            <h2 className="text-3xl md:text-4xl font-display font-medium text-brand-charcoal mb-6 leading-tight">
                                 {t('home.about.title')}
                             </h2>
 
-                            <div className="space-y-6 text-lg text-neutral-600 font-light leading-relaxed mb-10">
+                            <div className="space-y-4 text-base text-neutral-600 font-light leading-relaxed mb-8">
                                 <p>
                                     {t('home.about.text')}
                                 </p>
@@ -60,23 +60,13 @@ const AboutSnippet = () => {
                                 <div className="h-px w-24 bg-brand-terracotta/20" />
                             </div>
 
-                            <div className="flex items-center gap-8">
+                            <div>
                                 <Link
                                     to="/about"
                                     className="px-8 py-3 border-2 border-brand-charcoal text-brand-charcoal font-bold hover:bg-brand-charcoal hover:text-white transition-all duration-300"
                                 >
                                     {t('home.about.link')}
                                 </Link>
-
-                                <div className="hidden sm:block">
-                                    <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-1">Sígueme</p>
-                                    <div className="flex gap-4 text-brand-charcoal">
-                                        {/* Placeholder social icons or text */}
-                                        <span className="text-xs font-bold hover:text-brand-terracotta cursor-pointer">IG</span>
-                                        <span className="text-xs font-bold hover:text-brand-terracotta cursor-pointer">YT</span>
-                                        <span className="text-xs font-bold hover:text-brand-terracotta cursor-pointer">FB</span>
-                                    </div>
-                                </div>
                             </div>
                         </motion.div>
                     </div>

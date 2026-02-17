@@ -11,9 +11,9 @@ const HomePage = () => {
   return (
     <Layout noTopPadding={true}>
       <HeroSection />
+      <CategoryShowcase />
       <AboutSnippet />
       <FeaturedRecipes />
-      <CategoryShowcase />
       <NewsletterSection />
     </Layout>
   );

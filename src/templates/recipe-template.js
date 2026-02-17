@@ -149,10 +149,14 @@ const RecipeTemplate = ({ data, pageContext }) => {
             >
               <div className="flex flex-col">
                 <div className="order-1">
-                  {recipe.category && (
-                    <span className="inline-block px-4 py-1 bg-brand-terracotta/10 text-brand-terracotta text-sm font-semibold rounded-full mb-4 no-print">
-                      {recipe.category.name}
-                    </span>
+                  {recipe.category?.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4 no-print">
+                      {recipe.category.map(cat => (
+                        <span key={cat.name} className="inline-block px-4 py-1 bg-brand-terracotta/10 text-brand-terracotta text-sm font-semibold rounded-full">
+                          {cat.name}
+                        </span>
+                      ))}
+                    </div>
                   )}
 
                   <h1 className="text-4xl md:text-5xl font-display font-bold text-brand-charcoal mb-6 print-title">

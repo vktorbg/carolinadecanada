@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-[85vh] lg:min-h-screen flex items-center overflow-hidden bg-brand-cream pb-12">
+    <section className="relative min-h-[60vh] lg:min-h-[62vh] flex items-center overflow-hidden bg-brand-cream pb-2">
       {/* Editorial Grid Lines - Subtler */}
       <div className="absolute inset-0 z-0 opacity-[0.015] pointer-events-none">
         <div className="absolute left-1/3 top-0 bottom-0 border-l border-brand-charcoal h-full" />
         <div className="absolute left-2/3 top-0 bottom-0 border-l border-brand-charcoal h-full" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-48 md:pt-60">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-32 md:pt-36">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           {/* Left Column: Content (span 6) */}
           <div className="lg:col-span-6 text-left max-w-xl">
@@ -24,7 +24,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-7xl sm:text-8xl lg:text-9xl font-display font-medium text-brand-charcoal mb-10 leading-[0.9] tracking-tighter">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-medium text-brand-charcoal mb-5 leading-[0.9] tracking-tighter">
                 {t('home.hero.title')}
               </h1>
             </motion.div>
@@ -35,12 +35,12 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <p className="text-xl md:text-2xl text-neutral-500 mb-12 font-light leading-relaxed max-w-md">
+              <p className="text-lg md:text-xl text-neutral-500 mb-6 font-light leading-relaxed max-w-md">
                 {t('home.hero.subtitle')}
               </p>
 
               {/* Decorative script accent */}
-              <div className="absolute -top-8 -left-4 text-brand-terracotta/20 font-accent-script text-6xl select-none">
+              <div className="absolute -top-6 -left-4 text-brand-terracotta/20 font-accent-script text-4xl select-none">
                 Bilingual
               </div>
             </motion.div>
@@ -49,11 +49,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-6"
+              className="flex flex-wrap items-center gap-4"
             >
               <Link
                 to="/recipes"
-                className="group relative px-10 py-4 bg-brand-charcoal text-white text-xs font-bold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:bg-brand-terracotta hover:scale-105 hover:shadow-2xl active:scale-95"
+                className="group relative px-8 py-3 bg-brand-charcoal text-white text-xs font-bold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:bg-brand-terracotta hover:scale-105 hover:shadow-2xl active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {t('home.hero.cta')} <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
@@ -61,7 +61,7 @@ const HeroSection = () => {
               </Link>
               <Link
                 to="/about"
-                className="group px-10 py-4 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-charcoal transition-all duration-300 hover:bg-white active:scale-95"
+                className="group px-8 py-3 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-charcoal transition-all duration-300 hover:bg-white active:scale-95"
               >
                 {t('nav.about')}
               </Link>
@@ -73,9 +73,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="lg:col-span-6 relative flex justify-end"
+            className="lg:col-span-6 relative flex justify-end pt-6 lg:pt-10"
           >
-            <div className="relative z-10 w-full max-w-[480px] aspect-[4/5] overflow-hidden rounded-[60px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border-[16px] border-white">
+            <div className="relative z-10 w-full max-w-[440px] aspect-[4/3] overflow-hidden rounded-[40px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] border-[10px] border-white">
               <img
                 src="/images/hero_pancakes.jpeg"
                 alt="Canadian Culinary Delights"
@@ -90,7 +90,7 @@ const HeroSection = () => {
             <motion.div
               animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-12 -right-6 w-28 h-28 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white z-20 overflow-hidden"
+              className="absolute -top-8 -right-4 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white z-20 overflow-hidden"
             >
               <img
                 src="/images/canada_flag_icon.png"
@@ -102,15 +102,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Down Hint - Subtler */}
-      <motion.div
-        animate={{ opacity: [0.2, 0.5, 0.2] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-8 left-12 flex items-center gap-4 text-brand-terracotta/30 hidden lg:flex"
-      >
-        <div className="h-px w-12 bg-current" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
-      </motion.div>
     </section>
   );
 };
