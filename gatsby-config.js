@@ -33,7 +33,7 @@ const plugins = [
       defaultLanguage: defaultLanguage,
       siteUrl: 'https://carolinadecanada.com',
       prefixDefault: false,
-      redirect: false,
+      redirect: true,
       i18nextOptions: {
         defaultNS: 'translation',
       },

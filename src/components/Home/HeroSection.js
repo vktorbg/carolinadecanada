@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
+import { Link, useTranslation, useI18next } from 'gatsby-plugin-react-i18next';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const { language, changeLanguage } = useI18next();
 
   return (
     <section className="relative min-h-[60vh] lg:min-h-[62vh] flex items-center overflow-hidden bg-brand-cream pb-2">
@@ -59,12 +60,13 @@ const HeroSection = () => {
                   {t('home.hero.cta')} <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
                 </span>
               </Link>
-              <Link
-                to="/about"
-                className="group px-7 py-3 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-charcoal transition-all duration-300 hover:bg-white active:scale-95"
+              <button
+                onClick={() => changeLanguage(language === 'en' ? 'es' : 'en')}
+                className="group px-7 py-3 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-terracotta hover:text-brand-terracotta transition-all duration-300 hover:bg-white active:scale-95 flex items-center gap-2"
               >
-                {t('nav.about')}
-              </Link>
+                <span>{language === 'en' ? '🇲🇽' : '🇨🇦'}</span>
+                {t('home.hero.switchLang')}
+              </button>
             </motion.div>
           </div>
 

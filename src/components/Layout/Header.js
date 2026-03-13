@@ -61,7 +61,7 @@ const Header = ({ minimal = false }) => {
 
           {/* Right Side - Language Toggle */}
           <div className="flex items-center justify-end lg:w-1/4">
-            <div className="hidden sm:block">
+            <div className="block">
               <LanguageToggle />
             </div>
           </div>

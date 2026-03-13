@@ -9,7 +9,8 @@
     "hero": {
       "title": "Sabor de Canadá",
       "subtitle": "Descubre recetas auténticas y tradiciones culinarias compartidas con un corazón bilingüe",
-      "cta": "Explorar Recetas"
+      "cta": "Explorar Recetas",
+      "switchLang": "In English"
     },
     "about": {
       "greeting": "Hola, soy Carolina",

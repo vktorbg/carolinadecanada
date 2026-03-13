@@ -9,7 +9,8 @@
     "hero": {
       "title": "A Taste of Canada",
       "subtitle": "Discover authentic recipes and culinary traditions shared with a bilingual heart",
-      "cta": "Explore Recipes"
+      "cta": "Explore Recipes",
+      "switchLang": "En Español"
     },
     "about": {
       "greeting": "Hi, I'm Carolina",
