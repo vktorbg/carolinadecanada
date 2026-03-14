@@ -64,7 +64,14 @@ const HeroSection = () => {
                 onClick={() => changeLanguage(language === 'en' ? 'es' : 'en')}
                 className="group px-7 py-3 border-2 border-brand-charcoal/10 text-brand-charcoal text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:border-brand-terracotta hover:text-brand-terracotta transition-all duration-300 hover:bg-white active:scale-95 flex items-center gap-2"
               >
-                <span>{language === 'en' ? '🇲🇽' : '🇨🇦'}</span>
+                <img
+                  src={language === 'en'
+                    ? 'https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f1f2-1f1fd.svg'
+                    : 'https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f1e8-1f1e6.svg'
+                  }
+                  alt={language === 'en' ? 'México' : 'Canada'}
+                  className="w-5 h-5 rounded-sm object-cover"
+                />
                 {t('home.hero.switchLang')}
               </button>
             </motion.div>
@@ -88,18 +95,6 @@ const HeroSection = () => {
             {/* Soft decorative glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-terracotta/5 rounded-full blur-[100px] -z-10" />
 
-            {/* Floating Badge - Canada Flag */}
-            <motion.div
-              animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-2 right-4 lg:-top-8 lg:-right-4 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white z-20 overflow-hidden"
-            >
-              <img
-                src="/images/canada_flag_icon.png"
-                alt="Canada"
-                className="w-full h-full object-cover scale-[1.1]"
-              />
-            </motion.div>
           </motion.div>
         </div>
       </div>
