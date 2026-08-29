@@ -78,5 +78,3 @@ yarn-error.log
 *.swo
 *~
 
-# Netlify
-.netlify/

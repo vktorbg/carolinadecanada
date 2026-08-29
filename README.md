@@ -168,22 +168,24 @@ service cloud.firestore {
 
 ## 🚢 Deployment
 
-### Netlify (Recommended)
+### Firebase Hosting (automated)
 
-1. **Connect your repository**
-   - Go to https://app.netlify.com
-   - Click "New site from Git"
-   - Connect your repository
+The site deploys itself; there is nothing to run by hand. GitHub Actions builds
+and pushes to Firebase Hosting (project `carolina-de-canada`) on three triggers:
 
-2. **Configure build settings**
-   - Build command: `npm run build`
-   - Publish directory: `public`
+1. **A push to `master`.**
+2. **A publish in Contentful** - a webhook fires a `repository_dispatch` of type
+   `contentful-publish`. This is what makes content edits reach production.
+3. **The "Run workflow" button** on the Actions tab, to force a deploy.
 
-3. **Set environment variables**
-   Add all variables from `.env` in Netlify's environment variables section
+Pull requests get their own preview channel.
 
-4. **Deploy**
-   Netlify will automatically build and deploy your site
+Because the site is statically generated, a content change is only live once the
+build finishes - roughly 2-4 minutes after publishing, not instantly.
+
+Build credentials live as repository secrets (`CONTENTFUL_SPACE_ID`,
+`CONTENTFUL_ACCESS_TOKEN`, `FIREBASE_SERVICE_ACCOUNT_CAROLINA_DE_CANADA`), not in
+any hosting dashboard. See `CLAUDE.md` for the full pipeline.
 
 ### Manual Build
 

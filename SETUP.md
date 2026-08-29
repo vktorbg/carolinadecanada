@@ -180,23 +180,15 @@ npm run build
 
 The production-ready site will be in the `public` directory.
 
-## 🚢 Deploy to Netlify
+## 🚢 Deploy
 
-### Option 1: Connect Git Repository
-1. Push your code to GitHub/GitLab/Bitbucket
-2. Go to https://app.netlify.com
-3. Click "New site from Git"
-4. Connect your repository
-5. Build settings:
-   - Build command: `npm run build`
-   - Publish directory: `public`
-6. Add environment variables (all variables from `.env`)
-7. Deploy
+Deploys are automated through GitHub Actions to Firebase Hosting - push to
+`master` and it ships. A publish in Contentful also triggers a rebuild via a
+webhook, and the Actions tab has a manual "Run workflow" button.
 
-### Option 2: Drag and Drop
-1. Run `npm run build`
-2. Go to https://app.netlify.com
-3. Drag the `public` folder to deploy
+There is no dashboard to configure: build settings live in
+`.github/workflows/firebase-hosting-merge.yml` and credentials are repository
+secrets. See `CLAUDE.md` for details.
 
 ## 🎨 Customizing the Design
 

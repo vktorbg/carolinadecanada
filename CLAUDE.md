@@ -80,8 +80,10 @@ static/        Se copia tal cual a la raíz del sitio
 
 ## Notas
 
-- `netlify.toml` sigue en el repo por historia. El hosting es Firebase; si Netlify
-  todavía está conectado al repo, cada push genera un deploy duplicado.
+- El sitio estuvo en Netlify. Ya no queda configuración suya en el repo, pero si el
+  proyecto sigue conectado en app.netlify.com hay que desconectarlo allí: si no, cada
+  push genera un deploy duplicado. Conviene confirmar también que el DNS del dominio
+  apunte a Firebase y no a Netlify.
 - `gatsby-node.js` fuerza la transpilación de `framer-motion` y compañía por problemas
   de resolución ESM con Webpack 5. No lo quites sin probar el build.
 - `public/` está en `.gitignore`; es salida de build. La copia local puede estar obsoleta.
